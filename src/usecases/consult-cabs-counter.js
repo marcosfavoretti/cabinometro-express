@@ -1,4 +1,4 @@
-const { consult_counter } = require('../sql/sql.lib');
+const { consult_counter, setIsolation } = require('../sql/sql.lib');
 const connectToDatabase = require('../database/connector');
 /**
  * 
@@ -8,6 +8,7 @@ const connectToDatabase = require('../database/connector');
 async function consultCabsCounter(req, res) {
   try {
     const connection = await connectToDatabase();
+    await connection.query(setIsolation)
     const result = await connection.query(consult_counter);
     if (result.length > 0) {
       const currentCout = result[0].total_counter + +process.env.CURRENTCOUNT
