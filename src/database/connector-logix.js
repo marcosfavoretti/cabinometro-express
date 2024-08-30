@@ -4,7 +4,7 @@ const connectionString = `DSN=${process.env.DATABASEDSN}`;
 
 let connection;
 
-async function connectToDatabase() {
+async function connectToDatabaseLogix() {
   if (!connection) {
     try {
       connection = await odbc.connect(connectionString);
@@ -17,4 +17,4 @@ async function connectToDatabase() {
   return connection;
 }
 
-module.exports = connectToDatabase;
+module.exports = connectToDatabaseLogix;
